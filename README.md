@@ -1,16 +1,29 @@
-# clone_keep_flutter
+# Clone Keep Flutter
 
-&#x27;A new Flutter project. Created by Slidy&#x27;
+## Sumário:
 
-## Getting Started
+1. Introdução
+2. Funcionalidades
+3. Tecnologias e padrões
+4. Screens Shorts
 
-This project is a starting point for a Flutter application.
 
-A few resources to get you started if this is your first Flutter project:
+### Introdução
+Projeto inicialmente criado para aperfeiçoamento na tecnologia flutter.
 
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
+### Funcionalidades
 
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+
+### Tecnologias
+
+**1.** Slidy.
+
+**2.**  Flutter Mudolar.
+
+**3.** Mobx
+
+**4.** Firebase
+
+
+
+### Screens Shorts
