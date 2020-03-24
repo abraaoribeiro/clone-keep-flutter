@@ -16,14 +16,14 @@ Projeto inicialmente criado para aperfeiçoamento na tecnologia flutter.
 
 ### Tecnologias
 
-**1.** Slidy.
+**.** Slidy.
 
-**2.**  Flutter Mudolar.
+**.**  Flutter Mudolar.
 
-**3.** Mobx
+**.** Mobx
 
-**4.** Firebase
+**.** Firebase
 
 
 
-### Screens Shorts
+### Screenshorts
