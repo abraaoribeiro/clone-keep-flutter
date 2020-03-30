@@ -29,7 +29,6 @@ class AuthRepository implements IAuthRepository {
 
   @override
   Future getLogout() {
-    // TODO: implement getLogout
-    return null;
+    return _auth.signOut();
   }
 }

@@ -18,13 +18,16 @@ class _LoginPageState extends ModularState<LoginPage, LoginController> {
       appBar: AppBar(
         title: Text(widget.title),
       ),
-      body: Column(
-        children: <Widget>[
-          RaisedButton(
+      body: Center(
+        child: SizedBox(
+          width: 300.0,
+          child: FlatButton.icon(
+            color: Colors.amber,
             onPressed: controller.loginWithGoogle,
-            child: Text('Login with Google'),
+            label: Text('Login with Google'),
+            icon: Icon(Icons.account_circle)
           ),
-        ],
+        ),
       ),
     );
   }

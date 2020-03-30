@@ -7,12 +7,11 @@ class HomeModule extends ChildModule {
   List<Bind> get binds => [
         Bind((i) => HomeController()),
       ];
-      
+
   @override
   List<Router> get routers => [
         Router('/', child: (_, args) => HomePage()),
-          Router('/home', child: (_, args) => HomePage()),
-      ]; 
+      ];
 
   static Inject get to => Inject<HomeModule>.of();
 }

@@ -32,4 +32,10 @@ mixin _$LoginController on _LoginBase, Store {
   Future<dynamic> loginWithGoogle() {
     return _$loginWithGoogleAsyncAction.run(() => super.loginWithGoogle());
   }
+
+  @override
+  String toString() {
+    final string = 'loading: ${loading.toString()}';
+    return '{$string}';
+  }
 }
