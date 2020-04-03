@@ -16,11 +16,61 @@ class _HomePageState extends ModularState<HomePage, HomeController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text(widget.title),
+      body: CustomScrollView(
+        slivers: <Widget>[
+          SliverPadding(
+              padding: EdgeInsets.only(top: 40, right: 15, left: 15),
+              sliver: SliverAppBar(
+                floating: true,
+                expandedHeight: 10,
+                primary: false,
+                shape: ContinuousRectangleBorder(
+                    borderRadius: BorderRadius.all(Radius.circular(15)),
+                    side: BorderSide(
+                        color: Color.fromRGBO(0, 0, 0, 0.2),
+                        style: BorderStyle.solid)),
+                actions: <Widget>[
+                  IconButton(onPressed: () {}, icon: Icon(Icons.dehaze)),
+                  Flexible(
+                    child: TextField(
+                      decoration: InputDecoration(
+                          border: InputBorder.none,
+                          hintText: 'Pesquisar suas notas'),
+                    ),
+                  ),
+                  IconButton(onPressed: () {}, icon: Icon(Icons.view_stream)),
+                  IconButton(onPressed: () {}, icon: Icon(Icons.account_circle)),
+                ],
+                backgroundColor: Color.fromRGBO(255, 255, 255, 1),
+              )),
+          SliverFillRemaining(
+              child: Column(
+            children: <Widget>[],
+          ))
+        ],
       ),
-      body: Column(
-        children: <Widget>[],
+      bottomNavigationBar: BottomAppBar(
+        shape: CircularNotchedRectangle(),
+        color: Colors.white,
+        child: Container(
+          padding: EdgeInsets.symmetric(horizontal: 17),
+          height: 60,
+          child: Row(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: <Widget>[
+              new IconButton(icon: new Icon(Icons.check_box), onPressed: () {}),
+              new IconButton(icon: new Icon(Icons.brush), onPressed: () {}),
+              new IconButton(icon: new Icon(Icons.mic_none), onPressed: () {}),
+              new IconButton(icon: new Icon(Icons.photo), onPressed: () {}),
+            ],
+          ),
+        ),
+      ),
+      floatingActionButtonLocation: FloatingActionButtonLocation.endDocked,
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {},
+        child: Icon(Icons.add),
+        backgroundColor: Colors.white,
       ),
     );
   }
