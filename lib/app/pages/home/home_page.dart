@@ -11,11 +11,37 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends ModularState<HomePage, HomeController> {
-  //use 'controller' variable to access controller
+  final GlobalKey<ScaffoldState> _scaffoldKey = new GlobalKey<ScaffoldState>();
 
   @override
   Widget build(BuildContext context) {
+    double cardHeight = 170;
+    double cardWidth = 170;
+    double cardPadding = 15;
+
     return Scaffold(
+      key: _scaffoldKey,
+      drawer: new Drawer(
+          child: new ListView.builder(
+        itemCount: 1,
+        itemBuilder: (BuildContext context, int index) {
+          return new ListBody(
+            children: <Widget>[
+              new DrawerHeader(
+                child: new Text("Keep Clone"),
+              ),
+              new ListTile(
+                title: new Text(''),
+                onTap: () {},
+              ),
+              new ListTile(
+                title: new Text(''),
+                onTap: () {},
+              ),
+            ],
+          );
+        },
+      )),
       body: CustomScrollView(
         slivers: <Widget>[
           SliverPadding(
@@ -23,6 +49,10 @@ class _HomePageState extends ModularState<HomePage, HomeController> {
               sliver: SliverAppBar(
                 floating: true,
                 expandedHeight: 10,
+                leading: Container(
+                  height: 0,
+                  width: 0,
+                ),
                 primary: false,
                 shape: ContinuousRectangleBorder(
                     borderRadius: BorderRadius.all(Radius.circular(15)),
@@ -30,7 +60,11 @@ class _HomePageState extends ModularState<HomePage, HomeController> {
                         color: Color.fromRGBO(0, 0, 0, 0.2),
                         style: BorderStyle.solid)),
                 actions: <Widget>[
-                  IconButton(onPressed: () {}, icon: Icon(Icons.dehaze)),
+                  IconButton(
+                      onPressed: () {
+                        _scaffoldKey.currentState.openDrawer();
+                      },
+                      icon: Icon(Icons.dehaze)),
                   Flexible(
                     child: TextField(
                       decoration: InputDecoration(
@@ -39,13 +73,36 @@ class _HomePageState extends ModularState<HomePage, HomeController> {
                     ),
                   ),
                   IconButton(onPressed: () {}, icon: Icon(Icons.view_stream)),
-                  IconButton(onPressed: () {}, icon: Icon(Icons.account_circle)),
+                  IconButton(
+                      onPressed: () {}, icon: Icon(Icons.account_circle)),
                 ],
                 backgroundColor: Color.fromRGBO(255, 255, 255, 1),
               )),
           SliverFillRemaining(
               child: Column(
-            children: <Widget>[],
+            children: <Widget>[
+              Flexible(
+                child: Row(
+                  children: <Widget>[
+                    Padding(
+                      padding: EdgeInsets.all(cardPadding),
+                      child: Container(
+                        color: Color.fromRGBO(100, 100, 100, 1),
+                        height: cardHeight,
+                        width: cardWidth,
+                      ),
+                    ),
+                    Padding(
+                        padding: EdgeInsets.all(cardPadding),
+                        child: Container(
+                          color: Color.fromRGBO(100, 100, 100, 1),
+                          height: cardHeight,
+                          width: cardWidth,
+                        ))
+                  ],
+                ),
+              )
+            ],
           ))
         ],
       ),
