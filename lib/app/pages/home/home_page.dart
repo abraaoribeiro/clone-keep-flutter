@@ -15,10 +15,6 @@ class _HomePageState extends ModularState<HomePage, HomeController> {
 
   @override
   Widget build(BuildContext context) {
-    double cardHeight = 170;
-    double cardWidth = 170;
-    double cardPadding = 15;
-
     return Scaffold(
       key: _scaffoldKey,
       drawer: new Drawer(
@@ -80,29 +76,7 @@ class _HomePageState extends ModularState<HomePage, HomeController> {
               )),
           SliverFillRemaining(
               child: Column(
-            children: <Widget>[
-              Flexible(
-                child: Row(
-                  children: <Widget>[
-                    Padding(
-                      padding: EdgeInsets.all(cardPadding),
-                      child: Container(
-                        color: Color.fromRGBO(100, 100, 100, 1),
-                        height: cardHeight,
-                        width: cardWidth,
-                      ),
-                    ),
-                    Padding(
-                        padding: EdgeInsets.all(cardPadding),
-                        child: Container(
-                          color: Color.fromRGBO(100, 100, 100, 1),
-                          height: cardHeight,
-                          width: cardWidth,
-                        ))
-                  ],
-                ),
-              )
-            ],
+            children: <Widget>[],
           ))
         ],
       ),
