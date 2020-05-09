@@ -4,7 +4,7 @@ import 'package:google_sign_in/google_sign_in.dart';
 
 class AuthRepository implements IAuthRepository {
   final GoogleSignIn _googleSignIn = GoogleSignIn();
-  final FirebaseAuth _auth = FirebaseAuth.instance;
+  final FirebaseAuth _firebaseAuth = FirebaseAuth.instance;
 
   @override
   Future<FirebaseUser> getGoogleLogin() async {
@@ -16,19 +16,44 @@ class AuthRepository implements IAuthRepository {
       accessToken: googleAuth.accessToken,
       idToken: googleAuth.idToken,
     );
+  }
 
-    final FirebaseUser user =
-        (await _auth.signInWithCredential(credential)).user;
+  @override
+  Future<FirebaseUser> getCurrentUser() async {
+    FirebaseUser user = await _firebaseAuth.currentUser();
     return user;
   }
 
   @override
-  Future<FirebaseUser> getUser() {
-    return _auth.currentUser();
+  Future<bool> isEmailVerified() async {
+    FirebaseUser user = await _firebaseAuth.currentUser();
+    return user.isEmailVerified;
   }
 
   @override
-  Future getLogout() {
-    return _auth.signOut();
+  Future<void> sendEmailVerification() async {
+    FirebaseUser user = await _firebaseAuth.currentUser();
+    user.sendEmailVerification();
+  }
+
+  @override
+  Future<String> signIn(String email, String password) async {
+    AuthResult result = await _firebaseAuth.signInWithEmailAndPassword(
+        email: email, password: password);
+    FirebaseUser user = result.user;
+    return user.uid;
+  }
+
+  @override
+  Future<void> signOut() async {
+    return await _firebaseAuth.signOut();
+  }
+
+  @override
+  Future<String> signUp(String email, String password) async {
+    AuthResult result = await _firebaseAuth.createUserWithEmailAndPassword(
+        email: email, password: password);
+    FirebaseUser user = result.user;
+    return user.uid;
   }
 }

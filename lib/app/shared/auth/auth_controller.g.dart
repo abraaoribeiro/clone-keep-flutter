@@ -43,13 +43,6 @@ mixin _$AuthController on _AuthControllerBase, Store {
     }, _$userAtom, name: '${_$userAtom.name}_set');
   }
 
-  final _$loginWithGoogleAsyncAction = AsyncAction('loginWithGoogle');
-
-  @override
-  Future<dynamic> loginWithGoogle() {
-    return _$loginWithGoogleAsyncAction.run(() => super.loginWithGoogle());
-  }
-
   final _$_AuthControllerBaseActionController =
       ActionController(name: '_AuthControllerBase');
 

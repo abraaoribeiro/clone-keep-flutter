@@ -16,7 +16,6 @@ abstract class _LoginBase with Store {
   Future loginWithGoogle() async {
     try {
       loading = true;
-      await auth.loginWithGoogle();
       Modular.to.pushReplacementNamed('/home');
     } catch (e) {
       loading = false;

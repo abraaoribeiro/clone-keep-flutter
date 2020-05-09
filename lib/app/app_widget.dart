@@ -1,3 +1,5 @@
+import 'package:clone_keep_flutter/app/shared/auth/repositories/auth_repository.dart';
+import 'package:clone_keep_flutter/app/shared/guard/router_guard.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 
@@ -20,7 +22,7 @@ class AppWidget extends StatelessWidget {
           )
         )
       ),
-      initialRoute: '/',
+      home: new RouterGuard(auth: new AuthRepository()),
       onGenerateRoute: Modular.generateRoute,
     );
   }

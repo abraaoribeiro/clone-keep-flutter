@@ -21,24 +21,6 @@ abstract class _AuthControllerBase with Store {
     status = user == null ? AuthStatus.logoff : AuthStatus.login;
   }
 
-  _AuthControllerBase() {
-    _authRepository.getUser().then(setUser).catchError((e) {
-      print('ERRORRRRRR');
-    });
-  }
-
-  @action
-  Future loginWithGoogle() async {
-    user = await _authRepository.getGoogleLogin();
-  }
-
-  Future logout() {
-    return _authRepository.getLogout();
-  }
-
-  Future currentUser() async {
-    return await _authRepository.getUser();
-  }
 }
 
 enum AuthStatus { loading, login, logoff }

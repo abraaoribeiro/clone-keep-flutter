@@ -15,13 +15,7 @@ abstract class _HomeControllerBase with Store {
   FirebaseUser userInfo;
 
   logoff() async {
-   await Modular.get<AuthController>().logout();
     Modular.to.pushReplacementNamed('/login');
   }
 
-  getUser() async{
-    await auth.currentUser().then((user) => {
-      this.userInfo = user
-    });
-  }
 }

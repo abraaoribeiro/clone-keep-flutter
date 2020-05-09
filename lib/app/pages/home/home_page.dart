@@ -1,18 +1,23 @@
+import 'package:clone_keep_flutter/app/shared/auth/repositories/auth_repository.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_modular/flutter_modular.dart';
-import 'home_controller.dart';
 
 class HomePage extends StatefulWidget {
   final String title;
-  const HomePage({Key key, this.title = "Home"}) : super(key: key);
+  const HomePage(
+      {Key key,
+      this.title = "Home",
+      String userId,
+      AuthRepository auth,
+      void Function() logoutCallback})
+      : super(key: key);
 
   @override
   _HomePageState createState() => _HomePageState();
 }
 
-class _HomePageState extends ModularState<HomePage, HomeController> {
+class _HomePageState extends State<HomePage> {
   final GlobalKey<ScaffoldState> _scaffoldKey = new GlobalKey<ScaffoldState>();
-
+  AuthRepository authRepository = new AuthRepository();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -29,7 +34,7 @@ class _HomePageState extends ModularState<HomePage, HomeController> {
               new ListTile(
                 title: new Text('Sair'),
                 onTap: () {
-                  controller.logoff();
+                  authRepository.signOut();
                 },
               ),
               new ListTile(
@@ -73,7 +78,7 @@ class _HomePageState extends ModularState<HomePage, HomeController> {
                   IconButton(onPressed: () {}, icon: Icon(Icons.view_stream)),
                   SizedBox(
                     child: InkWell(
-                    child: _buildAvatar(context),
+                      child: _buildAvatar(context),
                       //onTap: () => _buildAvatar(context),
                     ),
                   ),
@@ -112,13 +117,5 @@ class _HomePageState extends ModularState<HomePage, HomeController> {
     );
   }
 
-  Widget _buildAvatar(BuildContext context) {
-    final data = controller.userInfo;
-    return CircleAvatar(
-      backgroundImage:
-          data?.photoUrl != null ? NetworkImage(data?.photoUrl) : null,
-      child: data?.photoUrl == null ? const Icon(Icons.face) : null,
-      //radius: 10 ? 19 : 17,
-    );
-  }
+  Widget _buildAvatar(BuildContext context) {}
 }
