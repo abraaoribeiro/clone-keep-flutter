@@ -9,7 +9,16 @@ class AppWidget extends StatelessWidget {
       navigatorKey: Modular.navigatorKey,
       title: 'Clone Keep Flutter',
       theme: ThemeData(
-        primarySwatch: Colors.amber,
+        brightness: Brightness.light,
+        primaryColor: Colors.white,
+
+        appBarTheme: AppBarTheme.of(context).copyWith(
+          elevation: 0,
+          brightness: Brightness.dark,
+          iconTheme: IconThemeData(
+            color: Colors.white
+          )
+        )
       ),
       initialRoute: '/',
       onGenerateRoute: Modular.generateRoute,

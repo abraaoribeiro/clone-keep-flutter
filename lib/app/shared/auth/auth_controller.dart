@@ -35,6 +35,10 @@ abstract class _AuthControllerBase with Store {
   Future logout() {
     return _authRepository.getLogout();
   }
+
+  Future currentUser() async {
+    return await _authRepository.getUser();
+  }
 }
 
 enum AuthStatus { loading, login, logoff }

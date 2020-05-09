@@ -27,8 +27,10 @@ class _HomePageState extends ModularState<HomePage, HomeController> {
                 child: new Text("Keep Clone"),
               ),
               new ListTile(
-                title: new Text(''),
-                onTap: () {},
+                title: new Text('Sair'),
+                onTap: () {
+                  controller.logoff();
+                },
               ),
               new ListTile(
                 title: new Text(''),
@@ -69,8 +71,12 @@ class _HomePageState extends ModularState<HomePage, HomeController> {
                     ),
                   ),
                   IconButton(onPressed: () {}, icon: Icon(Icons.view_stream)),
-                  IconButton(
-                      onPressed: () {}, icon: Icon(Icons.account_circle)),
+                  SizedBox(
+                    child: InkWell(
+                    child: _buildAvatar(context),
+                      //onTap: () => _buildAvatar(context),
+                    ),
+                  ),
                 ],
                 backgroundColor: Color.fromRGBO(255, 255, 255, 1),
               )),
@@ -81,7 +87,7 @@ class _HomePageState extends ModularState<HomePage, HomeController> {
         ],
       ),
       bottomNavigationBar: BottomAppBar(
-        shape: CircularNotchedRectangle(),
+        shape: const CircularNotchedRectangle(),
         color: Colors.white,
         child: Container(
           padding: EdgeInsets.symmetric(horizontal: 17),
@@ -103,6 +109,16 @@ class _HomePageState extends ModularState<HomePage, HomeController> {
         child: Icon(Icons.add),
         backgroundColor: Colors.white,
       ),
+    );
+  }
+
+  Widget _buildAvatar(BuildContext context) {
+    final data = controller.userInfo;
+    return CircleAvatar(
+      backgroundImage:
+          data?.photoUrl != null ? NetworkImage(data?.photoUrl) : null,
+      child: data?.photoUrl == null ? const Icon(Icons.face) : null,
+      //radius: 10 ? 19 : 17,
     );
   }
 }
