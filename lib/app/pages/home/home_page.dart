@@ -1,4 +1,5 @@
 import 'package:clone_keep_flutter/app/shared/auth/repositories/auth_repository.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 class HomePage extends StatefulWidget {
@@ -18,8 +19,20 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   final GlobalKey<ScaffoldState> _scaffoldKey = new GlobalKey<ScaffoldState>();
   AuthRepository authRepository = new AuthRepository();
+  FirebaseUser user = null;
+
+  @override
+  void initState() {
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
+    authRepository.getCurrentUser().then((user) {
+      setState(() {
+        this.user = user;
+      });
+    });
     return Scaffold(
       key: _scaffoldKey,
       drawer: new Drawer(
@@ -64,10 +77,12 @@ class _HomePageState extends State<HomePage> {
                         style: BorderStyle.solid)),
                 actions: <Widget>[
                   IconButton(
-                      onPressed: () {
-                        _scaffoldKey.currentState.openDrawer();
-                      },
-                      icon: Icon(Icons.dehaze)),
+                    onPressed: () {
+                      _scaffoldKey.currentState.openDrawer();
+                    },
+                    icon: Icon(Icons.dehaze),
+                    color: Colors.black,
+                  ),
                   Flexible(
                     child: TextField(
                       decoration: InputDecoration(
@@ -75,13 +90,13 @@ class _HomePageState extends State<HomePage> {
                           hintText: 'Pesquisar suas notas'),
                     ),
                   ),
-                  IconButton(onPressed: () {}, icon: Icon(Icons.view_stream)),
-                  SizedBox(
-                    child: InkWell(
-                      child: _buildAvatar(context),
-                      //onTap: () => _buildAvatar(context),
-                    ),
-                  ),
+                  IconButton(
+                      onPressed: () {},
+                      icon: Icon(
+                        Icons.view_stream,
+                        color: Colors.black,
+                      )),
+                  _buildAvatar(this.user)
                 ],
                 backgroundColor: Color.fromRGBO(255, 255, 255, 1),
               )),
@@ -117,5 +132,18 @@ class _HomePageState extends State<HomePage> {
     );
   }
 
-  Widget _buildAvatar(BuildContext context) {}
+  Widget _buildAvatar(FirebaseUser user) {
+    return user != null
+        ? CircleAvatar(
+            radius: 30.0,
+            backgroundImage: NetworkImage(this.user.photoUrl == null
+                ? 'https://media.istockphoto.com/vectors/male-unknown-user-social-icon-isolated-vector-image-vector-id532327910'
+                : this.user.photoUrl),
+            backgroundColor: Colors.transparent,
+          )
+        : Container(
+            height: 0,
+            width: 0,
+          );
+  }
 }
