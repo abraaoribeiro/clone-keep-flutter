@@ -54,4 +54,8 @@ class NotaRepository implements INotaRepository {
     // TODO: implement update
     return null;
   }
+
+  Future<void> delete(Nota nota) {
+    return databaseReference.collection(collection).document(nota.key).delete();
+  }
 }
