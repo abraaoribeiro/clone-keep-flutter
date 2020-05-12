@@ -47,7 +47,10 @@ class _HomePageState extends State<HomePage> {
               new ListTile(
                 title: new Text('Sair'),
                 onTap: () {
-                  authRepository.signOut();
+                  authRepository.signOut().then((v) {
+                    Navigator.of(context).pushNamedAndRemoveUntil(
+                        '/login', (Route<dynamic> route) => false);
+                  });
                 },
               ),
               new ListTile(
